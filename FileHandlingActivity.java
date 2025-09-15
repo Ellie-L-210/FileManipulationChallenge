@@ -11,7 +11,9 @@ public class FileHandlingActivity {
         makeTextFile("data.txt");
         makeTextFile("log.txt");
         // c. Write messages to files
-
+        writeToFile("this is the beginning of my notes file.", "notes.txt");
+        writeToFile("2, 4, 6, and 8 are even numbers.", "data.txt");
+        writeToFile("Today I worked on 0.4 and 0.3.", "log.txt");
         // d. Read and display file contents
 
         // e. Create backup directory
@@ -29,6 +31,12 @@ public class FileHandlingActivity {
     public static void makeTextFile(String fileName) throws IOException {
         File file = new File(fileName);
         file.createNewFile();
+    }
+
+    public static void writeToFile(String input, String fileName) throws IOException {
+        BufferedWriter br = new BufferedWriter(new FileWriter(fileName));
+        br.write(input);
+        br.close();
     }
 
 }

@@ -1,4 +1,7 @@
 import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class FileHandlingActivity {
     public static void main(String[] args) throws IOException {
@@ -22,6 +25,9 @@ public class FileHandlingActivity {
         copyContents("notes.txt", "data.txt", "log.txt");
         // g. List all files in both directories
         listAllFiles("mainDirectory", "mainDirectory/Backup");
+
+        // debug activity
+        debugFileOperation();
     }
 
     public static void makeMainDirectory() {
@@ -81,6 +87,22 @@ public class FileHandlingActivity {
             if (f != null) {
                 System.out.println(f.getName());
             }
+        }
+    }
+
+    public static void debugFileOperation() {
+        try {
+            // Creating a file with an invalid name (forward slash is invalid for file names
+            // on many OS)
+            File file = new File("fileName.txt");
+
+            // Attempting to write to the invalid file
+            FileWriter writer = new FileWriter(file);
+            writer.write("Will this fail?");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

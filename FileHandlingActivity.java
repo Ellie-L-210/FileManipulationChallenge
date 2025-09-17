@@ -15,7 +15,7 @@ public class FileHandlingActivity {
         writeToFile("2, 4, 6, and 8 are even numbers.", "data.txt");
         writeToFile("Today I worked on 0.4 and 0.3.", "log.txt");
         // d. Read and display file contents
-
+        displayContents("data.txt");
         // e. Create backup directory
 
         // f. Copy contents to backup file
@@ -37,6 +37,17 @@ public class FileHandlingActivity {
         BufferedWriter br = new BufferedWriter(new FileWriter(fileName));
         br.write(input);
         br.close();
+    }
+
+    public static void displayContents(String fileName) throws IOException {
+        File current = new File(fileName);
+        BufferedReader br = new BufferedReader(new FileReader(current));
+        String output = "";
+        while (br.ready()) {
+            output += (char) br.read();
+        }
+        br.close();
+        System.out.println(output);
     }
 
 }

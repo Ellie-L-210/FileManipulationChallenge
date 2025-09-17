@@ -15,11 +15,11 @@ public class FileHandlingActivity {
         writeToFile("2, 4, 6, and 8 are even numbers.", "data.txt");
         writeToFile("Today I worked on 0.4 and 0.3.", "log.txt");
         // d. Read and display file contents
-        displayContents("data.txt");
+        System.out.println(getContents("data.txt"));
         // e. Create backup directory
         makeBackup();
         // f. Copy contents to backup file
-
+        copyContents("notes.txt", "data.txt", "log.txt");
         // g. List all files in both directories
     }
 
@@ -39,7 +39,7 @@ public class FileHandlingActivity {
         br.close();
     }
 
-    public static void displayContents(String fileName) throws IOException {
+    public static String getContents(String fileName) throws IOException {
         File current = new File(fileName);
         BufferedReader br = new BufferedReader(new FileReader(current));
         String output = "";
@@ -47,7 +47,7 @@ public class FileHandlingActivity {
             output += (char) br.read();
         }
         br.close();
-        System.out.println(output);
+        return output;
     }
 
     public static void makeBackup() {
@@ -55,4 +55,12 @@ public class FileHandlingActivity {
         dir.mkdir();
     }
 
+    public static void copyContents(String file1, String file2, String file3) throws IOException {
+        File backup = new File("mainDirectory/Backup/backup.txt");
+        BufferedWriter br = new BufferedWriter(new FileWriter(backup));
+        br.write(getContents(file1));
+        br.write(getContents(file2));
+        br.write(getContents(file3));
+        br.close();
+    }
 }

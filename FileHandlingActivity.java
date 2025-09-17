@@ -17,7 +17,7 @@ public class FileHandlingActivity {
         // d. Read and display file contents
         displayContents("data.txt");
         // e. Create backup directory
-
+        makeBackup();
         // f. Copy contents to backup file
 
         // g. List all files in both directories
@@ -48,6 +48,11 @@ public class FileHandlingActivity {
         }
         br.close();
         System.out.println(output);
+    }
+
+    public static void makeBackup() {
+        File dir = new File("mainDirectory/Backup");
+        dir.mkdir();
     }
 
 }

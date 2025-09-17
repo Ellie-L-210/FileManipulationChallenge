@@ -21,6 +21,7 @@ public class FileHandlingActivity {
         // f. Copy contents to backup file
         copyContents("notes.txt", "data.txt", "log.txt");
         // g. List all files in both directories
+        listAllFiles("mainDirectory", "mainDirectory/Backup");
     }
 
     public static void makeMainDirectory() {
@@ -29,7 +30,7 @@ public class FileHandlingActivity {
     }
 
     public static void makeTextFile(String fileName) throws IOException {
-        File file = new File(fileName);
+        File file = new File("mainDirectory/" + fileName);
         file.createNewFile();
     }
 
@@ -62,5 +63,24 @@ public class FileHandlingActivity {
         br.write(getContents(file2));
         br.write(getContents(file3));
         br.close();
+    }
+
+    public static void listAllFiles(String path1, String path2) {
+        File directory1 = new File(path1);
+        File directory2 = new File(path2);
+        File[] dirOneFiles = directory1.listFiles();
+        File[] dirTwoFiles = directory2.listFiles();
+        System.out.println("Files in " + directory1.getName() + ":");
+        for (File f : dirOneFiles) {
+            if (f != null) {
+                System.out.println(f.getName());
+            }
+        }
+        System.out.println("Files in " + directory2.getName() + ":");
+        for (File f : dirTwoFiles) {
+            if (f != null) {
+                System.out.println(f.getName());
+            }
+        }
     }
 }
